@@ -469,8 +469,7 @@
 
       
         
-          
-            <p><strong>电脑系统为MacOS</strong></p>
+          <p><strong>电脑系统为MacOS</strong></p>
 <ul>
 <li><h4 id="起步"><a href="#起步" class="headerlink" title="起步"></a>起步</h4><p><strong>新建git仓库</strong></p>
 </li>
@@ -479,119 +478,13 @@
 <p><strong>账户名.github.io</strong>，</p>
 <p>不然接下来会有很多麻烦。( 本文这里已经注册过了所以这里只是演示)</p>
 <p>并且需要勾选Initialize this repository with a README</p>
-<p><img src="http://p798k8a1a.bkt.clouddn.com/image/jpegWechatIMG347.jpeg" alt="image"></p>
-<p>在建好的项目右侧有个settings按钮，点击它，</p>
-<p>向下拉到GitHub Pages，</p>
-<p>你会看到那边有个网址，就是你的博客地址</p>
-<p><strong>安装hexo</strong></p>
-<p>在自己认为合适的地方创个文件夹，我这里新建blog文件夹,通过终端进入该文件，通过以下命令安装hexo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo -g</span><br></pre></td></tr></table></figure>
-<p>检查hexo是否安装成功</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输入hexo -v</span><br></pre></td></tr></table></figure>
-<p>初始化该文件夹（有点漫长的等待。。。）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo init</span><br></pre></td></tr></table></figure>
-<p>看到Start blogging with Hexo就说明成功了</p>
-<hr>
-<p>安装所需要的组件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install</span><br></pre></td></tr></table></figure>
-<p>首次体验Hexo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo g</span><br></pre></td></tr></table></figure>
-<p>开启服务器，访问 <a href="">localhost:4000</a>，正式体验Hexo</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>假如要停止服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Ctrl+C</span><br></pre></td></tr></table></figure>
-<p><strong>问题</strong>：假如页面一直无法跳转，那么可能端口被占用了。此时我们ctrl+c停止服务器，接着输入“hexo server -p 端口号”来改变端口号</p>
-<p>那么出现如下图就成功了</p>
-<p><img src="http://p798k8a1a.bkt.clouddn.com/WechatIMG346.jpeg" alt="image"></p>
-<p>将Hexo与Github page联系起来:</p>
-<p>配置Deployment，<br>在hexo项目文件夹中，找到_config.yml文件，修改repo值（在末尾）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repository: git@github.com:xx/xx.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
-<p>这里的 <strong>xx/xx</strong> 为自己新建项目时的 <strong>仓库名/项目名字</strong></p>
-<p><strong>hexo初体验之-新建文章</strong></p>
-<p>新建一篇博客，在终端执行命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo new post “博客名”</span><br></pre></td></tr></table></figure>
-<p>这时候在文件夹source/_posts目录下将会看到已经创建的 .md 文件</p>
-<p>在生成以及部署文章之前，需要安装一个扩展</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-deployer-git --save</span><br></pre></td></tr></table></figure>
-<p>使用markdown编辑器编好文章，那么就可以使用命令生成以及部署了</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo d -g，</span><br></pre></td></tr></table></figure>
-<p>例如本文：</p>
-<p>部署成功后访问你的地址</p>
-<p>http://你的用户名.github.io。</p>
-<p>那么将看到生成的文章</p>
-<ul>
-<li><h4 id="进阶"><a href="#进阶" class="headerlink" title="进阶"></a>进阶</h4></li>
-</ul>
-<p><strong>主题的配置</strong>：NexT</p>
-<ol>
-<li>安装NexT主题</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/iissnan/hexo-theme-next themes/next</span><br></pre></td></tr></table></figure>
-<ol>
-<li>在站点目录中(blog)，打开配置文件_config.yml，找到theme，修改</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">theme：next</span><br></pre></td></tr></table></figure>
-<ol>
-<li>启动服务，验证主题</li>
-</ol>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hexo s</span><br></pre></td></tr></table></figure>
-<p>如果看到如下界面，说明成功安装了NexT主题</p>
-<p>4.主题相关的设定</p>
-<ul>
-<li>主题布局</li>
-</ul>
-<p>在项目文件 themes/next 主题目录下的_config.yml文件中</p>
-<p>将scheme设定为Pisces</p>
-<ul>
-<li>语言设定</li>
-</ul>
-<p>在站点根目录下修改配置文件_cofig.yml中的language为zh-Hans（简体中文）</p>
-<ul>
-<li><p>修改菜单项-增加菜单项</p>
-<p>在 themes/next 主题目录下修改配置文件_cofig.yml中的menu，</p>
-<p>增添一个菜单名称 这里以example为例</p>
-</li>
-</ul>
-<p>example:/example</p>
-<p> （若你的站点运行在子目录中，请将链接前缀的 / 去掉）</p>
-<p> 这些配置都要与你主题目录下的languages文件中对应的yml文档里配置相关联。</p>
-<p> 比如你在站点根目录中的配置文件设置language为zh-Hans，那么就要进入到主题目录下的languages文件中修改zh-Hans.yml，这样才能显示出菜单项新增的中文内容</p>
-<ul>
-<li><p>设置菜单项图标</p>
-<p>对应的字段是menu_icons。</p>
-</li>
-</ul>
-<p><strong>注意</strong>：</p>
-<p>以前的版本中，设置图标<br>格式为item name：icon name</p>
-<p>现在可直接在链接后添加修改</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">menu：</span><br><span class="line"></span><br><span class="line">example: /页面链接  || book</span><br></pre></td></tr></table></figure>
-<p>icon name是<a href="https://fontawesome.com/icons?d=gallery" target="_blank" rel="noopener">Font Awesome</a>图标的名字</p>
-<p>而 enable 可用于控制是否显示图标，你可以设置成 false 来去掉图标。</p>
-<ul>
-<li>设置侧栏位置</li>
-</ul>
-<p>修改主题目录下sidebar的position值</p>
-<ul>
-<li>设置头像</li>
-</ul>
-<p>在站点根目录下载配置文件中新增avatar</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">avatar：/images/xx.jpg</span><br></pre></td></tr></table></figure>
-<p>地址可以是网络地址</p>
-<p>也可以是本地地址（放置在source/images/ 目录下）</p>
-<ul>
-<li>设置文章代码主题</li>
-</ul>
-<p>在主题目录下修改配置文件 highlight_theme，默认值为nomal。可以设置为night</p>
-<ul>
-<li><h4 id="拓展"><a href="#拓展" class="headerlink" title="拓展"></a>拓展</h4><p><strong>添加留言板</strong><br>其实现在的主题里都兼容了各种主流留言板，如（畅言、gitment、valine、disqus）无需过多操作</p>
-</li>
-</ul>
-<p>本文用的<a href="https://valine.js.org/" target="_blank" rel="noopener">valine</a></p>
-<p>在主题目录配置文件_cofig.yml中搜索valine</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">valine:</span><br><span class="line">  enable: true</span><br><span class="line">  appid:  xxxx</span><br><span class="line">  appkey:  xxxx</span><br><span class="line">  notify: false # 是否开启邮箱验证 </span><br><span class="line">  verify: false # 是否开启验证码</span><br><span class="line">  placeholder: 说点什么吧 #  placeholder</span><br><span class="line">  avatar: mm # gravatar style</span><br><span class="line">  guest_info: nick # 访客头像</span><br><span class="line">  pageSize: 10 # pagination size</span><br></pre></td></tr></table></figure>
-<p>按照如上配置将enable改为true，gitment也是如此，appid与key值去相关网站注册获取，再按照官方文档修改想要的修改的配置</p>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/02/hexo github从零搭建博客React学习笔记/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -718,36 +611,17 @@
 
       
         
-          
-            <ol>
+          <ol>
 <li><p>（先进入项目文件夹）通过命令 git init 把这个目录变成git可以管理的仓库<br><code>git init</code></p>
 </li>
 <li><p>把文件添加到版本库中，使用命令 git add .添加到暂存区里面去，不要忘记后面的小数点“.”，意为添加文件夹下的所有文件<br><code>git add .</code></p>
-</li>
-<li><p>用命令 git commit告诉Git，把文件提交到仓库。引号内为提交说明<br><code>git commit -m &#39;first commit&#39;</code></p>
-</li>
-<li><p>关联到远程库<br><code>git remote add origin 你的远程库地址</code></p>
-</li>
-<li><p>获取远程库与本地同步合并（如果远程库不为空必须做这一步，否则后面的提交会失败）<br><code>git pull --rebase origin master</code></p>
-</li>
-<li><p>把本地库的内容推送到远程，使用 git push命令，实际上是把当前分支master推送到远程。执行此命令后会要求输入用户名、密码，验证通过后即开始上传。<br><code>git push -u origin master</code></p>
-</li>
-<li><p>git报错：’fatal:remote origin already exists’怎么处理？</p>
-<p>先删除</p>
-<p><code>git remote rm origin</code></p>
-<p>再次执行添加就可以了。</p>
-<p><code>git remote add origin 你的远程库地址</code></p>
-<p>如果输入 git remote rm origin 还是报错的话，</p>
-<p><code>error: Could not remove config section &#39;remote.origin&#39;.</code> </p>
-<p>我们需要修改gitconfig文件的内容</p>
-<p>找到github安装路径，找到一个名为gitconfig的文件，打开它把里面的[remote “origin”]那三行删掉就好了</p>
-<p><code>[remote &quot;origin&quot;]</code>  </p>
-<p><code>fetch = +refs/pull/*/head:refs/remotes/origin/pr/*</code>  </p>
-<p><code>fetch = +refs/heads/*:refs/remotes/origin/*</code> </p>
-</li>
-</ol>
-
-          
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/06/02/git将本地代码推到远程仓库/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -904,7 +778,7 @@
     <footer id="footer" class="footer">
       <div class="footer-inner">
         <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-<div class="copyright">&copy; <span itemprop="copyrightYear">2018</span>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017-2018</span>
   <span class="with-love">
     <i class="fa fa-user"></i>
   </span>
@@ -913,12 +787,6 @@
   
 </div>
 
-
-  <div class="powered-by">
-  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
-    本站访客数:<span id="busuanzi_value_site_uv"></span>
-  </span>
-  由 <a class="theme-link" target="_blank" href="https://github.com/zenjoo">Hexo</a> 强力驱动</div>
 
 
 
