@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="React,javascript," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="React推出后，出于不同的原因先后出现三种定义react组件的方式，殊途同归；具体的三种方式：  函数式定义的无状态组件 es5原生方式React.createClass定义的组件 es6形式的extends React.Component定义的组件  无状态函数式组件它是为了创建纯展示组件，这种组件只负责根据传入的props来展示，不涉及到要state状态的操作。 无状态函数式组件形式上表现为">
+<meta name="keywords" content="React,javascript">
+<meta property="og:type" content="article">
+<meta property="og:title" content="React创建组件的三种方式及其区别">
+<meta property="og:url" content="http://yoursite.com/2018/03/06/React创建组件的三种方式及其区别/index.html">
+<meta property="og:site_name" content="zenjoo&#39;blog">
+<meta property="og:description" content="React推出后，出于不同的原因先后出现三种定义react组件的方式，殊途同归；具体的三种方式：  函数式定义的无状态组件 es5原生方式React.createClass定义的组件 es6形式的extends React.Component定义的组件  无状态函数式组件它是为了创建纯展示组件，这种组件只负责根据传入的props来展示，不涉及到要state状态的操作。 无状态函数式组件形式上表现为">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-05-28T05:03:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="React创建组件的三种方式及其区别">
+<meta name="twitter:description" content="React推出后，出于不同的原因先后出现三种定义react组件的方式，殊途同归；具体的三种方式：  函数式定义的无状态组件 es5原生方式React.createClass定义的组件 es6形式的extends React.Component定义的组件  无状态函数式组件它是为了创建纯展示组件，这种组件只负责根据传入的props来展示，不涉及到要state状态的操作。 无状态函数式组件形式上表现为">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2018/03/06/React创建组件的三种方式及其区别/"/>
+
+
+
+
+
+  <title>React创建组件的三种方式及其区别 | zenjoo'blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">zenjoo'blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于我
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-something">
+          <a href="/news" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-book"></i> <br />
+            
+            狗富贵
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/React创建组件的三种方式及其区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZenJoo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pig.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zenjoo'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">React创建组件的三种方式及其区别</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T15:04:02+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/06/React创建组件的三种方式及其区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/06/React创建组件的三种方式及其区别/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>React推出后，出于不同的原因先后出现三种定义react组件的方式，殊途同归；具体的三种方式：</p>
+<ul>
+<li>函数式定义的无状态组件</li>
+<li>es5原生方式React.createClass定义的组件</li>
+<li>es6形式的extends React.Component定义的组件</li>
+</ul>
+<h2 id="无状态函数式组件"><a href="#无状态函数式组件" class="headerlink" title="无状态函数式组件"></a>无状态函数式组件</h2><p>它是为了创建纯展示组件，这种组件只负责根据传入的<code>props</code>来展示，不涉及到要<code>state</code>状态的操作。</p>
+<p>无状态函数式组件形式上表现为一个只带有一个<code>render</code>方法的组件类，通过函数形式或者ES6 arrow function的形式在创建，并且该组件是无<code>state</code>状态的。具体的创建形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function HelloComponent(props, /* context */) &#123;</span><br><span class="line"></span><br><span class="line">  return &lt;div&gt;Hello &#123;props.name&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;HelloComponent name=&quot;Sebastian&quot; /&gt;, mountNode)</span><br></pre></td></tr></table></figure>
+<p> 无状态组件的创建形式使代码的可读性更好，并且减少了大量冗余的代码，精简至只有一个render方法，大大的增强了编写一个组件的便利，除此之外无状态组件还有以下几个显著的特点：</p>
+<ol>
+<li><strong>组件不会被实例化，整体渲染性能得到提升</strong><br>因为组件被精简成一个render方法的函数来实现的，由于是无状态组件，所以无状态组件就不会在有组件实例化的过程，无实例化过程也就不需要分配多余的内存，从而性能得到一定的提升。</li>
+<li><strong>组件不能访问this对象</strong><br>无状态组件由于没有实例化过程，所以无法访问组件this中的对象，例如：<code>this.ref</code>、<code>this.state</code>等均不能访问。若想访问就不能使用这种形式来创建组件</li>
+<li><strong>组件无法访问生命周期的方法</strong><br>因为无状态组件是不需要组件生命周期管理和状态管理，所以底层实现这种形式的组件时是不会实现组件的生命周期方法。所以无状态组件是不能参与组件的各个生命周期管理的。</li>
+<li><strong>无状态组件只能访问输入的props，同样的props会得到同样的渲染结果，不会有副作用</strong></li>
+</ol>
+<p>无状态组件被鼓励在大型项目中尽可能以简单的写法来分割原本庞大的组件，未来React也会这种面向无状态组件在譬如无意义的检查和内存分配领域进行一系列优化，所以<strong>只要有可能，尽量使用无状态组件</strong>。</p>
+<a id="more"></a>
+<h2 id="React-createClass"><a href="#React-createClass" class="headerlink" title="React.createClass"></a>React.createClass</h2><p><code>React.createClass</code>是react刚开始推荐的创建组件的方式，这是ES5的原生的JavaScript来实现的React组件，其形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">var InputControlES5 = React.createClass(&#123;</span><br><span class="line">    propTypes: &#123;//定义传入props中的属性各种类型</span><br><span class="line">        initialValue: React.PropTypes.string</span><br><span class="line">    &#125;,</span><br><span class="line">    defaultProps: &#123; //组件默认的props对象</span><br><span class="line">        initialValue: &apos;&apos;</span><br><span class="line">    &#125;,</span><br><span class="line">    // 设置 initial state</span><br><span class="line">    getInitialState: function() &#123;//组件相关的状态对象</span><br><span class="line">        return &#123;</span><br><span class="line">            text: this.props.initialValue || &apos;placeholder&apos;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;,</span><br><span class="line">    handleChange: function(event) &#123;</span><br><span class="line">        this.setState(&#123; //this represents react component instance</span><br><span class="line">            text: event.target.value</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;,</span><br><span class="line">    render: function() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                Type something:</span><br><span class="line">                &lt;input onChange=&#123;this.handleChange&#125; value=&#123;this.state.text&#125; /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;);</span><br><span class="line">InputControlES6.propTypes = &#123;</span><br><span class="line">    initialValue: React.PropTypes.string</span><br><span class="line">&#125;;</span><br><span class="line">InputControlES6.defaultProps = &#123;</span><br><span class="line">    initialValue: &apos;&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<p>与无状态组件相比，<code>React.createClass</code>和后面要描述的<code>React.Component</code>都是创建有状态的组件，这些组件是要被实例化的，并且可以访问组件的生命周期方法。但是随着React的发展，<code>React.createClass</code>形式自身的问题暴露出来：</p>
+<ul>
+<li>React.createClass会自绑定函数方法（不像React.Component只绑定需要关心的函数）导致不必要的性能开销，增加代码过时的可能性。</li>
+<li>React.createClass的mixins不够自然、直观；React.Component形式非常适合高阶组件（Higher Order Components–HOC）,它以更直观的形式展示了比mixins更强大的功能，并且HOC是纯净的JavaScript，不用担心他们会被废弃。HOC可以参考<a href="http://www.jianshu.com/p/63569386befc" target="_blank" rel="noopener">无状态组件(Stateless Component) 与高阶组件</a>。</li>
+</ul>
+<h2 id="React-Component"><a href="#React-Component" class="headerlink" title="React.Component"></a>React.Component</h2><p><code>React.Component</code>是以ES6的形式来创建react的组件的，是React目前极为推荐的创建有状态组件的方式，最终会取代<code>React.createClass</code>形式；相对于 <code>React.createClass</code>可以更好实现代码复用。将上面<code>React.createClass</code>的形式改为<code>React.Component</code>形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">class InputControlES6 extends React.Component &#123;</span><br><span class="line">    constructor(props) &#123;</span><br><span class="line">        super(props);</span><br><span class="line"></span><br><span class="line">        // 设置 initial state</span><br><span class="line">        this.state = &#123;</span><br><span class="line">            text: props.initialValue || &apos;placeholder&apos;</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line">        // ES6 类中函数必须手动绑定</span><br><span class="line">        this.handleChange = this.handleChange.bind(this);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    handleChange(event) &#123;</span><br><span class="line">        this.setState(&#123;</span><br><span class="line">            text: event.target.value</span><br><span class="line">        &#125;);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    render() &#123;</span><br><span class="line">        return (</span><br><span class="line">            &lt;div&gt;</span><br><span class="line">                Type something:</span><br><span class="line">                &lt;input onChange=&#123;this.handleChange&#125;</span><br><span class="line">               value=&#123;this.state.text&#125; /&gt;</span><br><span class="line">            &lt;/div&gt;</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">InputControlES6.propTypes = &#123;</span><br><span class="line">    initialValue: React.PropTypes.string</span><br><span class="line">&#125;;</span><br><span class="line">InputControlES6.defaultProps = &#123;</span><br><span class="line">    initialValue: &apos;&apos;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="React-createClass与React-Component区别"><a href="#React-createClass与React-Component区别" class="headerlink" title="React.createClass与React.Component区别"></a>React.createClass与React.Component区别</h2><p>根据上面展示代码中二者定义组件的语法格式不同之外，二者还有很多重要的区别，下面就描述一下二者的主要区别。</p>
+<h3 id="函数this自绑定"><a href="#函数this自绑定" class="headerlink" title="函数this自绑定"></a>函数this自绑定</h3><p><code>React.createClass</code>创建的组件，其每一个成员函数的this都有React自动绑定，任何时候使用，直接使用<code>this.method</code>即可，函数中的<code>this</code>会被正确设置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">const Contacts = React.createClass(&#123;  </span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    console.log(this); // React Component instance</span><br><span class="line">  &#125;,</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div onClick=&#123;this.handleClick&#125;&gt;&lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>React.Component</code>创建的组件，其成员函数不会自动绑定this，需要开发者手动绑定，否则this不能获取当前组件实例对象。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">class Contacts extends React.Component &#123;  </span><br><span class="line">  constructor(props) &#123;</span><br><span class="line">    super(props);</span><br><span class="line">  &#125;</span><br><span class="line">  handleClick() &#123;</span><br><span class="line">    console.log(this); // null</span><br><span class="line">  &#125;</span><br><span class="line">  render() &#123;</span><br><span class="line">    return (</span><br><span class="line">      &lt;div onClick=&#123;this.handleClick&#125;&gt;&lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>当然，<code>React.Component</code>有三种手动绑定方法：可以在构造函数中完成绑定，也可以在调用时使用<code>method.bind(this)</code>来完成绑定，还可以使用arrow function来绑定。拿上例的<code>handleClick</code>函数来说，其绑定可以有：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">  constructor(props) &#123;</span><br><span class="line">     super(props);</span><br><span class="line">     this.handleClick = this.handleClick.bind(this); //构造函数中绑定</span><br><span class="line">&#125;</span><br><span class="line">  &lt;div onClick=&#123;this.handleClick.bind(this)&#125;&gt;&lt;/div&gt; //使用bind来绑定</span><br><span class="line">  &lt;div onClick=&#123;()=&gt;this.handleClick()&#125;&gt;&lt;/div&gt; //使用arrow function来绑定</span><br></pre></td></tr></table></figure>
+<h3 id="组件属性类型propTypes及其默认props属性defaultProps配置不同"><a href="#组件属性类型propTypes及其默认props属性defaultProps配置不同" class="headerlink" title="组件属性类型propTypes及其默认props属性defaultProps配置不同"></a>组件属性类型propTypes及其默认props属性defaultProps配置不同</h3><p><code>React.createClass</code>在创建组件时，有关组件props的属性类型及组件默认的属性会作为<strong>组件实例的属性</strong>来配置，其中defaultProps是使用<code>getDefaultProps</code>的方法来获取默认组件属性的</p>
+<p><code>React.Component</code>在创建组件时配置这两个对应信息时，他们是作为<strong>组件类的属性</strong>，不是组件实例的属性，也就是所谓的<strong>类的静态属性</strong>来配置的。</p>
+<h3 id="组件初始状态state的配置不同"><a href="#组件初始状态state的配置不同" class="headerlink" title="组件初始状态state的配置不同"></a>组件初始状态state的配置不同</h3><p><code>React.createClass</code>创建的组件，其状态state是通过<code>getInitialState</code>方法来配置组件相关的状态；<br><code>React.Component</code>创建的组件，其状态state是在<code>constructor</code>中像初始化组件属性一样声明的</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/React/" rel="tag"># React</a>
+          
+            <a href="/tags/javascript/" rel="tag"># javascript</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/03/02/React 生命周期/" rel="next" title="React 生命周期">
+                <i class="fa fa-chevron-left"></i> React 生命周期
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/pig.jpg"
+                alt="ZenJoo" />
+            
+              <p class="site-author-name" itemprop="name">ZenJoo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">9</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/zenjoo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="zenjoo@163.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/e101a881d01d" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#无状态函数式组件"><span class="nav-number">1.</span> <span class="nav-text">无状态函数式组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-createClass"><span class="nav-number">2.</span> <span class="nav-text">React.createClass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-Component"><span class="nav-number">3.</span> <span class="nav-text">React.Component</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#React-createClass与React-Component区别"><span class="nav-number">4.</span> <span class="nav-text">React.createClass与React.Component区别</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#函数this自绑定"><span class="nav-number">4.1.</span> <span class="nav-text">函数this自绑定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件属性类型propTypes及其默认props属性defaultProps配置不同"><span class="nav-number">4.2.</span> <span class="nav-text">组件属性类型propTypes及其默认props属性defaultProps配置不同</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#组件初始状态state的配置不同"><span class="nav-number">4.3.</span> <span class="nav-text">组件初始状态state的配置不同</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<div class="copyright">&copy; <span itemprop="copyrightYear">2017-2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">ZenJoo</span>
+
+  
+</div>
+
+
+
+
+  <span class="post-meta-divider"></span>
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+  <script type="text/javascript">
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick';
+    guest = guest.split(',').filter(item=>{
+      return GUEST.indexOf(item)>-1;
+    });
+    new Valine({
+        el: '#comments' ,
+        verify: false,
+        notify: false,
+        appId: 'ENFQKGVp4rJiJAaQ6U0oBmoH-gzGzoHsz',
+        appKey: 'uAYGTecoRcXEkz4YwnVjAA9e',
+        placeholder: '说点什么吧',
+        avatar: 'wavatar',
+        guest_info: ['nick'],
+        pageSize:'10' || 10,
+    });
+  </script>
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
+<script type="type/javascript" src="js/src/love.js"></script>

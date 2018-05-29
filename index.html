@@ -259,6 +259,156 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/06/React创建组件的三种方式及其区别/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="ZenJoo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/pig.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="zenjoo'blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/03/06/React创建组件的三种方式及其区别/" itemprop="url">React创建组件的三种方式及其区别</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-03-06T15:04:02+08:00">
+                2018-03-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2018/03/06/React创建组件的三种方式及其区别/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2018/03/06/React创建组件的三种方式及其区别/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>React推出后，出于不同的原因先后出现三种定义react组件的方式，殊途同归；具体的三种方式：</p>
+<ul>
+<li>函数式定义的无状态组件</li>
+<li>es5原生方式React.createClass定义的组件</li>
+<li>es6形式的extends React.Component定义的组件</li>
+</ul>
+<h2 id="无状态函数式组件"><a href="#无状态函数式组件" class="headerlink" title="无状态函数式组件"></a>无状态函数式组件</h2><p>它是为了创建纯展示组件，这种组件只负责根据传入的<code>props</code>来展示，不涉及到要<code>state</code>状态的操作。</p>
+<p>无状态函数式组件形式上表现为一个只带有一个<code>render</code>方法的组件类，通过函数形式或者ES6 arrow function的形式在创建，并且该组件是无<code>state</code>状态的。具体的创建形式如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">function HelloComponent(props, /* context */) &#123;</span><br><span class="line"></span><br><span class="line">  return &lt;div&gt;Hello &#123;props.name&#125;&lt;/div&gt;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line">ReactDOM.render(&lt;HelloComponent name=&quot;Sebastian&quot; /&gt;, mountNode)</span><br></pre></td></tr></table></figure>
+<p> 无状态组件的创建形式使代码的可读性更好，并且减少了大量冗余的代码，精简至只有一个render方法，大大的增强了编写一个组件的便利，除此之外无状态组件还有以下几个显著的特点：</p>
+<ol>
+<li><strong>组件不会被实例化，整体渲染性能得到提升</strong><br>因为组件被精简成一个render方法的函数来实现的，由于是无状态组件，所以无状态组件就不会在有组件实例化的过程，无实例化过程也就不需要分配多余的内存，从而性能得到一定的提升。</li>
+<li><strong>组件不能访问this对象</strong><br>无状态组件由于没有实例化过程，所以无法访问组件this中的对象，例如：<code>this.ref</code>、<code>this.state</code>等均不能访问。若想访问就不能使用这种形式来创建组件</li>
+<li><strong>组件无法访问生命周期的方法</strong><br>因为无状态组件是不需要组件生命周期管理和状态管理，所以底层实现这种形式的组件时是不会实现组件的生命周期方法。所以无状态组件是不能参与组件的各个生命周期管理的。</li>
+<li><strong>无状态组件只能访问输入的props，同样的props会得到同样的渲染结果，不会有副作用</strong></li>
+</ol>
+<p>无状态组件被鼓励在大型项目中尽可能以简单的写法来分割原本庞大的组件，未来React也会这种面向无状态组件在譬如无意义的检查和内存分配领域进行一系列优化，所以<strong>只要有可能，尽量使用无状态组件</strong>。</p>
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2018/03/06/React创建组件的三种方式及其区别/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/03/02/React 生命周期/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -715,7 +865,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
